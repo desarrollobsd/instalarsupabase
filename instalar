@@ -1,0 +1,31 @@
+Paso 1 Instalar un VPS Minimo con 2 GB de RAM yo le coloque 35 GB de Almacenamiento se puede escalar mas y use una Imagen de Docker Compose Puedes instalarlo Minimo e Instalas Docker
+Paso 2 Clonar el Repositorio git clone --depth 1 https://github.com/supabase/supabase
+Paso 3 Nos dirigimos al directorio docker: cd supabase/docker
+Paso 4 Copiamos el Archivo de Variables de Entorno de ejempplo y lo renombramos cp .env.example .env
+Paso 5 Hacemos docker compose pull para extraer las imagenes mas recientes
+Paso 6 corremos el contenedor docker compose up -d
+Paso 7 Acceso a SUPABASE STUDIO 
+      Acceso a Supabase Studio#
+      Puede acceder a Supabase Studio a través de la puerta de enlace de API en el puerto 8000. Por ejemplo: http://<your-ip>:8000, o localhost:8000 si está ejecutando Docker localmente.
+      Se le solicitará un nombre de usuario y una contraseña. De manera predeterminada, las credenciales son:
+      Nombre de usuario: supabase
+      Contraseña: this_password_is_insecure_and_should_be_updated
+Paso 8 Reemplazar las variables de Entornos Personalizadas sudo nano .env 
+Actualizar claves API#
+Ejecute este formulario dos veces para generar nuevas claves API de anon y de servicio. Reemplace los valores en el archivo ./docker/.env:
+
+ANON_KEY: reemplácelo con una clave de anon
+SERVICE_ROLE_KEY: reemplácelo con una clave de servicio
+Deberá reiniciar los servicios para que los cambios surtan efecto.
+
+Actualizar secretos#
+Actualice el archivo ./docker/.env con sus propios secretos. En particular, se requieren estos:
+
+POSTGRES_PASSWORD: la contraseña para el rol de postgres.
+JWT_SECRET: utilizado por PostgREST y GoTrue, entre otros.
+SITE_URL: la URL base de su sitio.
+SMTP_*: credenciales del servidor de correo. Puede utilizar cualquier servidor SMTP.
+POOLER_TENANT_ID: el ID de inquilino que utilizará el pooler de supavisor para su cadena de conexión
+Deberá reiniciar los servicios para que los cambios surtan efecto.
+
+//Nota Falta asegurar supabase con ssl y nginx en el transcurso de el dia los subo
